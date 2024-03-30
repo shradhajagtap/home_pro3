@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Title</title>
+
+{% endblock %}
+{% block content %}
+
+        <h2 class="text-primary text-center"> Information about Employees working in Company </h2>
+        <table class="table m-auto ">
+            <thead>
+                <tr>
+                    <th> ID </th>
+                    <th> Full Name </th>
+                    <th> Age </th>
+                    <th> Blood Group </th>
+                    <th> Emergency Contact No </th>
+                    <th> Do you have any long term insurance </th>
+                    <th> Reference Name </th>
+                    <th> Address </th>
+                    <th> Gender </th>
+                    <th colspan="2" class="text-center"> Action </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in objects %}
+                    <tr>
+                        <td>{{ employee.id }} </td>
+                        <td>{{ employee.full_name }}</td>
+                        <td>{{ employee.age }}</td>
+                        <td>{{ employee.blood_group }}</td>
+                        <td>{{ employee.emergency_contact_no }}</td>
+                        <td>{{ employee.do_you_have_any_long_term_insurance }}</td>
+                        <td>{{ employee.reference_name }}</td>
+                        <td>{{ employee.address }}</td>
+                        <td>{{ employee.gender }}</td>
+                        <td>
+                            <a href="{% url 'update_url'  employee.id %}">
+                                <button class="btn btn-outline-primary col-12"><i class="bi bi-vector-pen"></i> &nbsp Update </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_url' employee.id %}">
+                                <button class="btn btn-outline-danger col-12"><i class="bi bi-trash"></i> &nbsp Delete </button>
+                            </a>
+                    </td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+{% endblock %}
